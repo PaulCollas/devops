@@ -15,10 +15,15 @@ provider "scaleway" {
 
 resource "scaleway_rdb_instance" "main" {
   name           = "devops-rdb"
-  node_type      = "DB-DEV-S"
+  node_type      = "db-dev-s"
   engine         = "PostgreSQL-12"
   is_ha_cluster  = true
-  # disable_backup = true
-  # user_name      = "user"
-  # password       = "password"
+}
+
+resource "scaleway_instance_ip" "public_ip" {}
+
+resource "scaleway_instance_server" "web" {
+  type = "DEV1-S"
+  image = "ubuntu_focal"
+  ip_id = scaleway_instance_ip.public_ip.id
 }
