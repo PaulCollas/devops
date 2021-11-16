@@ -57,9 +57,9 @@ rg.fr-par.scw.cloud/efrei-devops/app:latest
 ## Prerequisite
 
 Before starting, you should make sure that:
-- You have access to the Scaleway account that was provided to you for this session
-- Terraform is installed on your laptop ( version >= 1.0.0 ). You can check the version by running `terraform --version`
-- You have an SSH Key (without a password or with running ssh-agent) and you have added it to your Scaleway account
+- You have access to the Scaleway account that was provided to you for this session  √
+- Terraform is installed on your laptop ( version >= 1.0.0 ). You can check the version by running `terraform --version`  √
+- You have an SSH Key (without a password or with running ssh-agent) and you have added it to your Scaleway account  √
 
 ## Exercise 01: Install Scaleway provider
 
