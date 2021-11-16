@@ -61,12 +61,12 @@ Before starting, you should make sure that:
 - Terraform is installed on your laptop ( version >= 1.0.0 ). You can check the version by running `terraform --version`  √
 - You have an SSH Key (without a password or with running ssh-agent) and you have added it to your Scaleway account  √
 
-## Exercise 01: Install Scaleway provider
+## Exercise 01: Install Scaleway provider √
 
 Following documentation install and configure the latest release of the [Scaleway Terraform Provider](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs)
 If your configuration is correct running `terraform init` should download the latest version of the provider.
 
-## Exercise 01: Create the database
+## Exercise 01: Create the database √
 
 Using the [Scaleway Terraform Provider](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs) create a postgresql database:
 
@@ -82,7 +82,7 @@ You will need to use [scaleway_rdb_instance](https://registry.terraform.io/provi
 
 After you run `terraform apply` you should be able to see your database in the [Scaleway RDB dashboard](https://console.scaleway.com/rdb/instances)
 
-## Exercise 02: Create a server
+## Exercise 02: Create a server √
 
 Now that you created your database we need to create a simple server instance.
 
@@ -101,7 +101,7 @@ image = "ubuntu_focal"
 After you run `terraform apply` you should be able to see your server in the [Scaleway Instance dashboard](https://console.scaleway.com/instance/servers)
 You should be able to connect to your new server using SSH.
 
-## Exercise 03: Server user data
+## Exercise 03: Server user data √
 
 The `user_data` property on `scaleway_instance_server` allows you to pass information from Terraform config that you can be read from within the instance.
 We will use `user_data` to pass the `DATABASE_URI` variable to our server.

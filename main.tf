@@ -31,7 +31,7 @@ resource "scaleway_instance_server" "web" {
   
   user_data = {
     # DATABASE_URI= "postgres://${scaleway_rdb_instance.main.user_name}:${scaleway_rdb_instance.main.password}@51.159.10.108:4698/rdb"
-    DATABASE_URI= "postgres://scaleway08@efrei-devops.com:Efrei!2021@51.159.10.108:4698/rdb"
+    DATABASE_URI= "postgres://scaleway08@efrei-devops.com:Efrei!2021@51.15.209.207:9794/rdb"
 
   }
 }
