@@ -22,12 +22,17 @@ resource "scaleway_rdb_instance" "main" {
   password       = "PAssWord;50"
 }
 
-resource "scaleway_instance_ip" "public_ip" {}
+resource "scaleway_instance_ip" "public_ip" {
+  count = 2
+}
 
 resource "scaleway_instance_server" "web" {
+
+  count = 2
+
   type = "DEV1-S"
   image = "ubuntu_focal"
-  ip_id = scaleway_instance_ip.public_ip.id
+  ip_id = scaleway_instance_ip.public_ip[count.index].id
   
   user_data = {
 
