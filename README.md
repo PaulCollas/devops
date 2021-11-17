@@ -1,5 +1,13 @@
 # Efrei - DevOps - Terraform
 
+# Comands for launch project
+
+> terraform apply
+
+open : 
+
+> https://console.scaleway.com/project
+
 ## Goal
 This series of exercise focus on building and deploying a NodeJS application in a fully automated way.
 At the end of the exercise, you should be able to build all this infrastructure with a simple `terraform apply` and destroy everything with a `terraform destroy`
