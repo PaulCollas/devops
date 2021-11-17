@@ -35,12 +35,7 @@ resource "scaleway_instance_server" "web" {
   ip_id = scaleway_instance_ip.public_ip[count.index].id
   
   user_data = {
-
-    # DATABASE_URI=postgres://<username>:<password>@<database-ip>:<database_port>/<databasename>
-    # DATABASE_URI="postgres://scaleway08@efrei-devops.com:Efrei!2021@195.154.70.55:12045/rdb"
-
     DATABASE_URI= "postgres://${scaleway_rdb_instance.main.user_name}:${scaleway_rdb_instance.main.password}@51.159.10.108:41352/rdb"
-
   }
 
   provisioner "remote-exec" {
@@ -59,4 +54,31 @@ resource "scaleway_instance_server" "web" {
     } 
 
   }
+}
+
+
+resource "scaleway_lb_ip" "ip" {
+}
+
+resource "scaleway_lb" "base" {
+  ip_id  = scaleway_lb_ip.ip.id
+  zone = "fr-par-1"
+  type   = "LB-S"
+}
+
+resource "scaleway_lb_backend" "backend01" {
+  lb_id            = scaleway_lb.base.id
+  name             = "backend01"
+  forward_protocol = "http"
+  forward_port     = "80"
+
+  server_ips = [ for o in scaleway_instance_ip.public_ip : o.address ]
+  
+}
+
+resource "scaleway_lb_frontend" "frontend01" {
+  lb_id        = scaleway_lb.base.id
+  backend_id   = scaleway_lb_backend.backend01.id
+  name         = "frontend01"
+  inbound_port = "80"
 }
