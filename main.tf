@@ -37,4 +37,21 @@ resource "scaleway_instance_server" "web" {
     DATABASE_URI= "postgres://${scaleway_rdb_instance.main.user_name}:${scaleway_rdb_instance.main.password}@51.159.10.108:41352/rdb"
 
   }
+
+  provisioner "remote-exec" {
+
+    inline=[
+      "sudo apt -y update",
+      "sudo apt install -y docker.io",
+      "docker run -d --name app -e DATABASE_URI=\"$(scw-userdata DATABASE_URI)\" -p 80:8080 --restart=always rg.fr-par.scw.cloud/efrei-devops/app:latest"
+    ]
+
+    connection {
+      type  = "ssh"
+      user  = "root"
+      private_key=file(pathexpand("~/.ssh/id_rsa"))
+      host=self.public_ip
+    } 
+
+  }
 }
