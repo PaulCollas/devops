@@ -18,8 +18,8 @@ resource "scaleway_rdb_instance" "main" {
   node_type      = "db-dev-s"
   engine         = "PostgreSQL-12"
   is_ha_cluster  = true
-  # user_name      = "scaleway08@efrei-devops.com"
-  # password       = "Efrei!2021"
+  user_name      = "TotoToto50"
+  password       = "PAssWord;50"
 }
 
 resource "scaleway_instance_ip" "public_ip" {}
@@ -30,8 +30,11 @@ resource "scaleway_instance_server" "web" {
   ip_id = scaleway_instance_ip.public_ip.id
   
   user_data = {
-    # DATABASE_URI= "postgres://${scaleway_rdb_instance.main.user_name}:${scaleway_rdb_instance.main.password}@51.159.10.108:4698/rdb"
-    DATABASE_URI= "postgres://scaleway08@efrei-devops.com:Efrei!2021@51.15.209.207:9794/rdb"
+
+    # DATABASE_URI=postgres://<username>:<password>@<database-ip>:<database_port>/<databasename>
+    # DATABASE_URI="postgres://scaleway08@efrei-devops.com:Efrei!2021@195.154.70.55:12045/rdb"
+
+    DATABASE_URI= "postgres://${scaleway_rdb_instance.main.user_name}:${scaleway_rdb_instance.main.password}@51.159.10.108:41352/rdb"
 
   }
 }
